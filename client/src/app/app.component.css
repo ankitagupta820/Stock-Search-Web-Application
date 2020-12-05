@@ -1,0 +1,33 @@
+.navbar-dark,
+.navbar-nav,
+.nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar {
+  background-color: rgb(109, 101, 252);
+}
+
+.navbar-brand,
+.navbar-brand:hover {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-toggler {
+  margin: 1rem;
+}
+
+.nav-item {
+  text-align: right;
+  padding: 0px 1rem;
+}
+
+.nav-item-active {
+  border: 1px solid white;
+  border-radius: 1rem;
+}
+
+.content {
+  margin-top: 1rem;
+  flex: 1 0 auto;
+}

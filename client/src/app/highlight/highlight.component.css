@@ -1,0 +1,100 @@
+.highlights {
+  text-align: center;
+}
+p {
+  margin-bottom: 0.5rem !important;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.watchlist_alert {
+  width: 100%;
+}
+
+.last {
+  font-size: 2rem !important;
+}
+
+.change {
+  font-size: 1.5rem !important;
+}
+
+.market {
+  text-align: center;
+  display: inline-block;
+  font-size: medium;
+  font-weight: normal;
+  color: black;
+  margin-top: 1rem;
+}
+.m_open {
+  background-color: rgb(153, 255, 51, 0.3);
+  float: none;
+}
+
+.m_close {
+  background-color: rgb(255, 51, 0, 0.3);
+  float: none;
+}
+
+.high {
+  font-size: larger;
+  color: green;
+}
+
+.low {
+  font-size: larger;
+  color: red;
+}
+
+.stable {
+  font-size: larger;
+  color: black;
+}
+
+.ticker {
+  font-size: 2rem;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.star-btn {
+  background-color: white;
+  border: none;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  line-height: normal;
+}
+
+.modal-content {
+  padding: 2rem;
+}
+.modal-newsTitle {
+  font-size: large;
+}
+
+span.date {
+  font-size: 1rem !important;
+}
+.quantity-label {
+  flex: 0 0 25%;
+}
+
+#quantity {
+  border-radius: 0.5rem;
+}

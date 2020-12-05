@@ -1,0 +1,69 @@
+<div class="heading">
+    My Watchlist
+</div>
+<div *ngIf="!loaded;else loadedContent">
+    <mat-spinner class="spinner-center"></mat-spinner>
+</div>
+<ng-template #loadedContent>
+    <div *ngIf="watchList.length == 0" class="alert alert-warning alert-div">
+        Currently you dont have any stock in your Watchlist
+    </div>
+    <div *ngIf="watchList.length != 0" class="container">
+        <div class="row">
+            <div *ngFor="let stock of watchList" class="col-12">
+                <div class="container stock-card">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="removeBookmark(stock.ticker)">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-end card-content" (click)="showDetails(stock.ticker)">
+
+                        <div class="col-6">
+                            <p class='ticker'>{{stock.ticker}}</p>
+                            <p class="name text-muted">{{stock.name}}</p>
+                        </div>
+
+                        <div class="col-6 align-right">
+                            <p [ngClass]="
+                                    {'high' : stock.change > 0, 
+                                    'low': stock.change < 0,
+                                    'stable': stock.change==0   }
+                                    ">
+                                {{stock.last}}
+                            </p>
+
+                            <div [ngClass]="
+                                    {'high' : stock.change > 0, 
+                                    'low': stock.change < 0 ,
+                                    'stable': stock.change==0 }
+                                    ">
+                                <ng-container *ngIf="stock.change < 0">
+                                    <svg width="1rem" height="1rem" viewBox="0 0 16 16" class="bi bi-caret-down-fill"
+                                        fill="red" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                    </svg>
+                                </ng-container>
+                                <ng-container *ngIf="stock.change > 0">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill"
+                                        fill="green" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                    </svg>
+                                </ng-container>
+                                {{stock.change | number: '1.1-2'}} <span> ({{stock.changePercent | number: '1.1-2' }}%)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

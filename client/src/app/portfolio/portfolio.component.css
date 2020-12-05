@@ -1,0 +1,83 @@
+.heading {
+  margin: 2rem;
+  font-size: 2rem;
+}
+
+.spinner-div {
+  left: 50%;
+}
+
+.alert-div {
+  text-align: center;
+}
+
+.card {
+  margin: 2rem;
+}
+.card-header {
+  text-align: left;
+  cursor: pointer;
+}
+.high {
+  color: green;
+}
+
+.low {
+  color: red;
+}
+
+.stable {
+  color: black;
+}
+.ticker-name {
+  font-size: 2rem;
+}
+.name {
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+td {
+  width: 50%;
+}
+.left,
+.right {
+  font-size: 1rem;
+}
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.btn {
+  margin-right: 1rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  line-height: normal;
+}
+
+.modal-content {
+  padding: 2rem;
+}
+
+.quantity-label {
+  flex: 0 0 25%;
+}
+
+#quantity {
+  border-radius: 0.5rem;
+}
+
+.align-right {
+  text-align: right;
+}

@@ -1,0 +1,129 @@
+<div *ngIf="highlights" class="container highlights">
+    <!--Alerts-->
+    <div class="row mb-1">
+        <p *ngFor="let alert of alerts" class='watchlist_alert'>
+            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" class="mb-0">{{ alert.message }}
+            </ngb-alert>
+        </p>
+    </div>
+    <div class="row">
+
+        <!--Left panel-->
+        <div class="col-6 align-left">
+            <span>
+                <p class="ticker">
+                    {{highlights.ticker}}
+                    <button *ngIf="bookmarked" (click)="toggleBookmark()" class='star-btn'>
+                        <svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="gold"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                    </button>
+                    <button *ngIf="!bookmarked" (click)="toggleBookmark()" class='star-btn'>
+                        <svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-star" fill="black"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                        </svg>
+                    </button>
+                </p>
+            </span>
+            <p class="name text-muted">{{highlights.name}}
+            </p>
+            <p>{{highlights.exchangeCode}}</p>
+            <button class="btn btn-success" (click)="openModal(content)">Buy</button>
+
+
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <p class="modal-title" id="modal-basic-title">{{highlights.ticker}}
+                    </p>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <label>Current Price: {{highlights.last}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 quantity-label">
+                                <label for="quantity">Quantity: </label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <input type='number' class="form-control" required id="quantity" name="quantity"
+                                    [(ngModel)]="quantity">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container">
+                        <div class="row justify-content-space-between">
+                            <div class="col">
+                                <label>Total : {{ highlights.last * quantity | number: '1.1-2'}}</label>
+                            </div>
+                            <div class="col align-right">
+                                <button type="button" class="btn btn-success" [disabled]="quantity<1"
+                                    (click)="closeModal()">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+
+        <!--Right panel-->
+        <div class="col-6 align-right">
+            <p [ngClass]="
+            {'high' : highlights.change > 0, 
+            'low': highlights.change < 0, 
+            'last': true  }
+            ">
+                {{highlights.last}}
+            </p>
+
+            <div [ngClass]="
+            {'high' : highlights.change > 0, 
+            'low': highlights.change < 0,
+            'change': true }
+            ">
+                <ng-container *ngIf="highlights.change < 0">
+                    <svg width="1rem" height="1rem" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="red"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                </ng-container>
+                <ng-container *ngIf="highlights.change > 0">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="green"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                    </svg>
+                </ng-container>
+                {{highlights.change | number: '1.1-2'}} <span> ({{highlights.changePercent | number: '1.1-2' }}%)
+                </span>
+            </div>
+            <p class='text-muted mt-2'>
+                {{highlights.currentTimestamp}}
+            </p>
+        </div>
+    </div>
+
+
+    <!--Market status-->
+    <div>
+        <p *ngIf="highlights.marketStatus" class='m_open market'>
+            Market is Open
+        <p>
+        <p *ngIf="!highlights.marketStatus" class='m_close market'>
+            Market Closed on {{highlights.lastTimestamp}}
+        </p>
+    </div>
+</div>
