@@ -1,0 +1,177 @@
+<div class='heading'>
+    My Portfolio
+</div>
+<div *ngIf="!loaded;else loadedContent">
+    <mat-spinner class="spinner-div"></mat-spinner>
+</div>
+<ng-template #loadedContent>
+    <div *ngIf="portfolio.length == 0" class="alert alert-warning alert-div">
+        Currently you dont have any stock
+    </div>
+    <div *ngFor="let stock of portfolio">
+        <div class="card text-center">
+            <div class="card-header" (click)="showDetails(stock[0])">
+                <span class="ticker-name">{{stock[0]}} </span> <span class="name text-muted">{{stock[1]["name"]}}
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <table>
+                            <tr>
+                                <td class="left">Quantity:</td>
+                                <td class="right">{{stock[1]["qty"]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left">Avg. Cost/Share:</td>
+                                <td class="right">{{(stock[1]["price"] / stock[1]["qty"]) | number: '1.1-2'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="left">Total Cost:</td>
+                                <td class="right">{{stock[1]["price"] | number: '1.1-2'}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <table>
+                            <tr>
+                                <td class="left">Change:</td>
+                                <td [ngClass]="
+                                {'high' : Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) > 0.0, 
+                                'low': Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) < 0.0,
+                                'stable': Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty']))==0, 
+                                right: true}">
+                                    <ng-container
+                                        *ngIf="Math.round((stock[1]['last'] - (stock[1]['price'] / stock[1]['qty']))) < 0">
+                                        <svg width="1rem" height="1rem" viewBox="0 0 16 16"
+                                            class="bi bi-caret-down-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                        </svg>
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) > 0">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill"
+                                            fill="green" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                        </svg>
+                                    </ng-container>
+                                    <span>
+                                        {{ (stock[1]["last"] - (stock[1]["price"] / stock[1]["qty"]))| number: '1.1-2'}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">Current Price:</td>
+                                <td [ngClass]="
+                                {'high' : Math.round((stock[1]['last'] - (stock[1]['price'] / stock[1]['qty']))) > 0, 
+                                'low': Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) < 0 ,
+                                'stable': Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) ==0 , 
+                                right: true}">
+                                    {{stock[1]["last"] | number: '1.1-2'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class=" left">Market Value:</td>
+                                <td [ngClass]="
+                                {'high' : Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) > 0, 
+                                'low': Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) < 0 ,
+                                'stable': Math.round(stock[1]['last'] - (stock[1]['price'] / stock[1]['qty'])) ==0 , 
+                                right: true}">
+                                    {{stock[1]["last"] * stock[1]["qty"] | number: '1.1-2'}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-right">
+                <div class="btn btn-danger" (click)="openModal(buy)">Buy</div>
+                <div class="btn btn-primary" (click)="openModal(sell)">Sell</div>
+            </div>
+        </div>
+
+        <ng-template #buy let-modal>
+            <div class="modal-header">
+                <p class="modal-title" id="modal-basic-title">{{stock[0]}}
+                </p>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <label>Current Price: {{stock[1].last}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 quantity-label">
+                            <label for="quantity">Quantity: </label>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <input type='number' class="form-control" required id="quantity" name="quantity"
+                                [(ngModel)]="quantity">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row justify-content-space-between">
+                        <div class="col">
+                            <label>Total : {{ stock[1].last * quantity | number: '1.1-2'}}</label>
+                        </div>
+                        <div class="col align-right">
+                            <button type="button" class="btn btn-success" [disabled]="quantity<1"
+                                (click)="closeModal(stock[0], quantity, stock[1].name, stock[1].last)">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- sell modal -->
+
+        <ng-template #sell let-modal>
+            <div class="modal-header">
+                <p class="modal-title" id="modal-basic-title">{{stock[0]}}
+                </p>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <label>Current Price: {{stock[1].last}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 quantity-label">
+                            <label for="quantity">Quantity: </label>
+                        </div>
+                        <div class="col-md-6 col-sm-12"><input type='number' class="form-control" required id="quantity"
+                                name="quantity" [(ngModel)]="quantity">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row justify-content-space-between">
+                        <div class="col">
+                            <label>Total : {{ stock[1].last * quantity | number: '1.1-2'}}</label>
+                        </div>
+                        <div class="col align-right">
+                            <button type="button" class="btn btn-success"
+                                [disabled]="quantity<1 || quantity > stock[1]['qty']"
+                                (click)="closeModal(stock[0], quantity)">Sell</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>

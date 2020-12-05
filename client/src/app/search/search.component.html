@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>STOCK SEARCH</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="input-group">
+                <input placeholder="Enter stock name" [matAutocomplete]="auto" autocomplete="off"
+                    [formControl]="searchCtrl" name="searchField" type="text" class="form-control">
+                <span class="input-group-btn pr-3 ">
+                    <button class="btn" type="submit" (click)="onSubmit()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngIf="isLoading" class="is-loading">
+                    <div>
+                        <mat-spinner class="spinner-center" diameter="45"></mat-spinner>
+                    </div>
+                </mat-option>
+                <ng-container *ngIf="!isLoading">
+                    <mat-option *ngFor="let suggestion of filteredTicker" [value]="suggestion.ticker">
+                        <span>{{suggestion.ticker}} | {{suggestion.name}}</span>
+                    </mat-option>
+                </ng-container>
+            </mat-autocomplete>
+        </div>
+    </div>
+</div>

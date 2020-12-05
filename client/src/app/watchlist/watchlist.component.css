@@ -1,0 +1,55 @@
+.spinner-center {
+  left: 50%;
+}
+.heading {
+  margin: 2rem;
+  font-size: 2rem;
+}
+.alert-div {
+  text-align: center;
+}
+
+.stock-card {
+  border: solid 0.1rem gainsboro;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.card-content {
+  cursor: pointer;
+}
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+.high {
+  font-size: larger;
+  color: green;
+}
+
+.low {
+  font-size: larger;
+  color: red;
+}
+
+.stable {
+  font-size: larger;
+}
+
+.ticker {
+  font-size: 2rem;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: normal;
+}

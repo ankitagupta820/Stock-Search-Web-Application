@@ -1,0 +1,16 @@
+.margin-tb {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.header {
+  font-size: 1.15rem;
+}
+
+.right {
+  text-align: right;
+}
+
+table {
+  width: 100%;
+}

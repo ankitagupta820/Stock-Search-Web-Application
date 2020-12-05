@@ -1,0 +1,3 @@
+<highcharts-chart *ngIf="chartOptions.series[0]['data'] && chartOptions.series[1]['data']" [Highcharts]="Highcharts"
+    [constructorType]="'stockChart'" [options]="chartOptions" style="width: 100%; height: 600px; display: block;">
+</highcharts-chart>

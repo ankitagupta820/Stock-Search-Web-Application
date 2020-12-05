@@ -1,0 +1,74 @@
+<div *ngIf="summary" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <div class="container">
+                <div class="row margin-tb">
+                    <div class="col-6">
+                        <table>
+                            <tr>
+                                <td>High Price:</td>
+                                <td class="right">{{summary.high}}</td>
+                            </tr>
+                            <tr>
+                                <td>Low Price:</td>
+                                <td class="right">{{summary.low}} </td>
+                            </tr>
+                            <tr>
+                                <td>Open Price:</td>
+                                <td class="right">{{summary.open}}</td>
+                            </tr>
+                            <tr>
+                                <td>Previous Close:</td>
+                                <td class="right">{{summary.close}}</td>
+                            </tr>
+                            <tr>
+                                <td> Volume: </td>
+                                <td class="right"> {{summary.volume}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table *ngIf="summary.marketStatus">
+                            <tr>
+                                <td>Mid Price:</td>
+                                <td class="right">{{summary.mid}} </td>
+                            </tr>
+                            <tr>
+                                <td>Ask Price:</td>
+                                <td class="right">{{summary.askPrice}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ask Size:</td>
+                                <td class="right">{{summary.askSize}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bid Price:</td>
+                                <td class="right">{{summary.bidPrice}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bid Size:</td>
+                                <td class="right">{{summary.bidSize}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="company" class="container">
+                <div class="row justify-content-center">
+                    <p class="header">Company's Description</p>
+                </div>
+                <div class="row-xs-12 row-sm-12">
+                    <p>{{company.startDate}}</p>
+                </div>
+                <div class="row-xs-12 row-sm-12">
+                    <p>{{company.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 margin-tb">
+            <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" [constructorType]="'stockChart'"
+                [options]="chartOptions" style="width: 100%; height: 500px; display: block;">
+            </highcharts-chart>
+        </div>
+    </div>
+</div>
