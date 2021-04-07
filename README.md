@@ -1,6 +1,3 @@
-
-
-
 # Stock Search Web Application
 
 ## :pushpin: Features
@@ -19,7 +16,7 @@ Backend server is built using Node.js (Express.js). <br/>
 App uses the API services from [Tingoo](https://api.tiingo.com/) and [NewsAPI](https://newsapi.org/). <br/>
 
 ## :pushpin: Gallery
-|<img width="400" alt="HomePage" src="https://user-images.githubusercontent.com/65870621/113939643-173fe100-97b1-11eb-885f-7e47b48b6c64.png">|
+|<img width="400" alt="HomePage" src="https://user-images.githubusercontent.com/65870621/113940313-1c516000-97b2-11eb-927c-79324aef4a04.png">|
 <img width="400" alt="Details" src="https://user-images.githubusercontent.com/65870621/113939722-3179bf00-97b1-11eb-9ba4-9cb51d1fa11e.png">|
 <img width="400" alt="Detail" src="https://user-images.githubusercontent.com/65870621/113940024-a947e980-97b1-11eb-9012-a0016f5670d3.png">|
 <img width="400" alt="Portfolio" src="https://user-images.githubusercontent.com/65870621/113939819-4eae8d80-97b1-11eb-8222-85ebbf62c4c9.png">|
