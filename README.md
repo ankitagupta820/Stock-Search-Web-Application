@@ -21,10 +21,11 @@ App uses the API services from [Tingoo](https://api.tiingo.com/) and [NewsAPI](h
 ## :pushpin: Gallery
 |<img width="400" alt="HomePage" src="https://user-images.githubusercontent.com/65870621/113939643-173fe100-97b1-11eb-885f-7e47b48b6c64.png">|
 <img width="400" alt="Details" src="https://user-images.githubusercontent.com/65870621/113939722-3179bf00-97b1-11eb-9ba4-9cb51d1fa11e.png">|
+<img width="400" alt="Detail" src="https://user-images.githubusercontent.com/65870621/113940024-a947e980-97b1-11eb-9012-a0016f5670d3.png">|
 <img width="400" alt="Portfolio" src="https://user-images.githubusercontent.com/65870621/113939819-4eae8d80-97b1-11eb-8222-85ebbf62c4c9.png">|
 <img width="400" alt="Charts" src="https://user-images.githubusercontent.com/65870621/113939882-66861180-97b1-11eb-8fa5-8c81d3bff804.png">|
 <img width="400" alt="Share" src="https://user-images.githubusercontent.com/65870621/113939988-97fedd00-97b1-11eb-9892-db0f44aa418f.png">|
-<img width="400" alt="Detail" src="https://user-images.githubusercontent.com/65870621/113940024-a947e980-97b1-11eb-9012-a0016f5670d3.png">|
+
 ## :pushpin: Video Demo
 Checkout the Video Demo at below link.<br/>
 https://www.youtube.com/watch?v=xZLd269CGsQ
