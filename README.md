@@ -16,7 +16,7 @@ Backend server is built using Node.js (Express.js). <br/>
 App uses the API services from [Tingoo](https://api.tiingo.com/) and [NewsAPI](https://newsapi.org/). <br/>
 
 ## :pushpin: Gallery
-![Screenshot 2021-04-07 at 2 50 27 PM](https://user-images.githubusercontent.com/65870621/113939252-9b459900-97b0-11eb-9f3b-7d216af747eb.png)
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/65870621/113939252-9b459900-97b0-11eb-9f3b-7d216af747eb.png"> 
 
 
 
